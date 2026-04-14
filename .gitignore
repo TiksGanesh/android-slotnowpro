@@ -1,0 +1,81 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+
+# Local configuration file (SDK path, etc.)
+local.properties
+
+# Built application files
+*.apk
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+build/
+
+# Gradle files
+.gradle/
+**/build/
+
+# Proguard
+proguard/
+
+# Log files
+*.log
+
+# Android Studio / IntelliJ
+.idea/
+*.iws
+*.ipr
+
+# Keystore files (IMPORTANT - never commit these)
+*.jks
+*.keystore
+
+# Navigation editor temp files
+.navigation/
+
+# Captures folder
+captures/
+
+# External native build folder
+.externalNativeBuild/
+.cxx/
+
+# Google Services (Firebase config - optional ignore if sensitive)
+google-services.json
+
+# Kotlin
+*.kotlin_module
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# NDK
+obj/
+
+# Misc
+*.hprof
