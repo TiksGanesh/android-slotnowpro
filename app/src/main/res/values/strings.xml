@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SlotNow Pro</string>
+    <string name="greeting_label">Hello %1$s!</string>
+    <string name="platform_android_label">Android</string>
 </resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Keep UI text in resources; onboarding language picker is the only planned scoped exception. -->
+    <issue id="HardcodedText" severity="error" />
+</lint>
+

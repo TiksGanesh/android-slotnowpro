@@ -26,7 +26,7 @@ android {
     buildTypes {
 
         debug {
-            buildConfigField("String", "API_BASE_URL", "\"https://dev.slotnow.app/api/v1/barber/\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://slotnow.app/api/v1/barber/\"")
         }
 
         release {
@@ -44,6 +44,11 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+
+    lint {
+        lintConfig = file("lint.xml")
+        abortOnError = true
     }
 }
 
