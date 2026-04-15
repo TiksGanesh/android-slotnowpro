@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.ApplicationInfo
 import app.slotnow.slotnowpro.BuildConfig
 import app.slotnow.slotnowpro.data.local.prefs.LanguageManager
+import app.slotnow.slotnowpro.data.local.prefs.ShopManager
 import app.slotnow.slotnowpro.data.local.prefs.TokenManager
 import app.slotnow.slotnowpro.data.remote.api.BarberAuthApi
 import app.slotnow.slotnowpro.data.remote.api.BarberDashboardApi
@@ -55,6 +56,12 @@ object NetworkModule {
     fun provideLanguageManager(
         @ApplicationContext context: Context
     ): LanguageManager = LanguageManager(context)
+
+    @Provides
+    @Singleton
+    fun provideShopManager(
+        @ApplicationContext context: Context
+    ): ShopManager = ShopManager(context)
 
     @Provides
     @Singleton

@@ -3,5 +3,33 @@
     <string name="greeting_label">नमस्कार %1$s!</string>
     <string name="platform_android_label">अँड्रॉइड</string>
     <string name="onboarding_language_skip_placeholder">भाषा आधीच निवडली आहे. आता दुकान सेटअपकडे जा.</string>
+    <string name="onboarding_language_title">तुमची भाषा निवडा</string>
+    <string name="onboarding_language_subtitle">तुम्ही हे नंतर सेटिंग्जमध्ये बदलू शकता</string>
+    <string name="onboarding_language_saved_note">तुमची निवड या डिव्हाइसवर जतन केली जाईल.</string>
+    <string name="onboarding_language_next">पुढे</string>
+    <string name="onboarding_language_continue">पुढे चालू ठेवा</string>
+    <string name="onboarding_language_back">मागे</string>
+    <string name="onboarding_shop_title">तुमचा दुकान आयडी टाका</string>
+    <string name="onboarding_shop_subtitle">तुम्हाला हे माहित नसेल तर तुमच्या मॅनेजरला विचारा</string>
+    <string name="onboarding_shop_input_label">दुकान आयडी</string>
+    <string name="onboarding_shop_hint">उदा. modern-salon</string>
+    <string name="onboarding_shop_continue">पुढे चालू ठेवा</string>
+    <string name="onboarding_shop_looks_good">योग्य आहे</string>
+    <string name="onboarding_shop_found">सापडले: %1$s</string>
+    <string name="onboarding_shop_verifying">दुकान आयडी तपासत आहे…</string>
+    <string name="onboarding_shop_invalid_format">फक्त लहान अक्षरे, अंक आणि हायफन वापरा.</string>
+    <string name="onboarding_shop_not_found_short">दुकान सापडले नाही.</string>
+    <string name="onboarding_shop_inactive_short">दुकान निष्क्रिय आहे.</string>
+    <string name="onboarding_shop_last_used">शेवटचा वापरलेला: %1$s</string>
+    <string name="onboarding_shop_use_last">हेच वापरा</string>
+    <string name="onboarding_shop_empty_error">पुढे जाण्यासाठी दुकान आयडी टाका.</string>
+    <string name="onboarding_shop_not_found">या आयडीसाठी दुकान सापडले नाही. तुमच्या मॅनेजरशी तपासा.</string>
+    <string name="onboarding_shop_inactive">हे दुकान सध्या निष्क्रिय आहे. सहाय्याशी संपर्क करा.</string>
+    <string name="onboarding_shop_network_error">इंटरनेट कनेक्शन नाही. कृपया पुन्हा प्रयत्न करा.</string>
+    <string name="retry_label">पुन्हा प्रयत्न करा</string>
+    <string name="auth_placeholder_title">लॉगिन फ्लो प्लेसहोल्डर</string>
+    <string name="auth_placeholder_subtitle">फेज 1.5-1.8 मध्ये ऑथ स्क्रीन जोडल्या जातील.</string>
+    <string name="main_placeholder_title">डॅशबोर्ड प्लेसहोल्डर</string>
+    <string name="main_placeholder_subtitle">मुख्य अॅप ग्राफ फेज 2 नंतर जोडला जाईल.</string>
 </resources>
 

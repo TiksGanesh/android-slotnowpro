@@ -3,4 +3,33 @@
     <string name="greeting_label">Hello %1$s!</string>
     <string name="platform_android_label">Android</string>
     <string name="onboarding_language_skip_placeholder">Language is already selected. Continuing setup.</string>
+    <string name="onboarding_language_title">Choose your language</string>
+    <string name="onboarding_language_subtitle">You can change this later in settings</string>
+    <string name="onboarding_language_saved_note">Your choice is saved on this device.</string>
+    <string name="onboarding_language_next">Next</string>
+    <string name="onboarding_language_continue">Continue</string>
+    <string name="onboarding_language_back">Back</string>
+    <string name="onboarding_shop_title">Enter your Shop ID</string>
+    <string name="onboarding_shop_subtitle">Ask your manager if you don’t know it</string>
+    <string name="onboarding_shop_input_label">Shop ID</string>
+    <string name="onboarding_shop_hint">e.g. modern-salon</string>
+    <string name="onboarding_shop_continue">Continue</string>
+    <string name="onboarding_shop_looks_good">Looks good</string>
+    <string name="onboarding_shop_found">Found: %1$s</string>
+    <string name="onboarding_shop_verifying">Verifying shop ID…</string>
+    <string name="onboarding_shop_invalid_format">Use lowercase letters, numbers, and hyphens only.</string>
+    <string name="onboarding_shop_not_found_short">Shop not found.</string>
+    <string name="onboarding_shop_inactive_short">Shop inactive.</string>
+    <string name="onboarding_shop_last_used">Last used: %1$s</string>
+    <string name="onboarding_shop_use_last">Use this</string>
+    <string name="onboarding_shop_empty_error">Enter your shop ID to continue.</string>
+    <string name="onboarding_shop_not_found">No shop found with this ID. Check with your manager.</string>
+    <string name="onboarding_shop_inactive">This shop is currently inactive. Contact support.</string>
+    <string name="onboarding_shop_network_error">No internet connection. Please retry.</string>
+    <string name="retry_label">Retry</string>
+    <string name="auth_placeholder_title">Login flow placeholder</string>
+    <string name="auth_placeholder_subtitle">Auth screens will be wired in Phase 1.5-1.8.</string>
+    <string name="main_placeholder_title">Dashboard placeholder</string>
+    <string name="main_placeholder_subtitle">Main app graph will be wired in Phase 2 onward.</string>
 </resources>
+
