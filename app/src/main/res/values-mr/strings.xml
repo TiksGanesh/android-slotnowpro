@@ -2,5 +2,6 @@
     <string name="app_name">स्लॉटनाउ प्रो</string>
     <string name="greeting_label">नमस्कार %1$s!</string>
     <string name="platform_android_label">अँड्रॉइड</string>
+    <string name="onboarding_language_skip_placeholder">भाषा आधीच निवडली आहे. आता दुकान सेटअपकडे जा.</string>
 </resources>
 
