@@ -3,5 +3,33 @@
     <string name="greeting_label">नमस्ते %1$s!</string>
     <string name="platform_android_label">एंड्रॉइड</string>
     <string name="onboarding_language_skip_placeholder">भाषा पहले से चुनी गई है। दुकान सेटअप पर जाएँ।</string>
+    <string name="onboarding_language_title">अपनी भाषा चुनें</string>
+    <string name="onboarding_language_subtitle">आप इसे बाद में सेटिंग्स में बदल सकते हैं</string>
+    <string name="onboarding_language_saved_note">आपकी पसंद इस डिवाइस पर सेव की जाएगी।</string>
+    <string name="onboarding_language_next">आगे</string>
+    <string name="onboarding_language_continue">जारी रखें</string>
+    <string name="onboarding_language_back">वापस</string>
+    <string name="onboarding_shop_title">अपनी दुकान आईडी दर्ज करें</string>
+    <string name="onboarding_shop_subtitle">अगर आपको यह नहीं पता है, तो अपने मैनेजर से पूछें</string>
+    <string name="onboarding_shop_input_label">दुकान आईडी</string>
+    <string name="onboarding_shop_hint">उदाहरण: modern-salon</string>
+    <string name="onboarding_shop_continue">जारी रखें</string>
+    <string name="onboarding_shop_looks_good">ठीक है</string>
+    <string name="onboarding_shop_found">मिल गया: %1$s</string>
+    <string name="onboarding_shop_verifying">दुकान आईडी सत्यापित की जा रही है…</string>
+    <string name="onboarding_shop_invalid_format">सिर्फ लोअरकेस अक्षर, नंबर और हाइफ़न का उपयोग करें।</string>
+    <string name="onboarding_shop_not_found_short">दुकान नहीं मिली।</string>
+    <string name="onboarding_shop_inactive_short">दुकान निष्क्रिय है।</string>
+    <string name="onboarding_shop_last_used">पिछली बार उपयोग किया गया: %1$s</string>
+    <string name="onboarding_shop_use_last">इसी का उपयोग करें</string>
+    <string name="onboarding_shop_empty_error">जारी रखने के लिए दुकान आईडी दर्ज करें।</string>
+    <string name="onboarding_shop_not_found">इस आईडी से कोई दुकान नहीं मिली। अपने मैनेजर से जांच करें।</string>
+    <string name="onboarding_shop_inactive">यह दुकान अभी निष्क्रिय है। सहायता से संपर्क करें।</string>
+    <string name="onboarding_shop_network_error">इंटरनेट कनेक्शन नहीं है। कृपया फिर से प्रयास करें।</string>
+    <string name="retry_label">फिर से प्रयास करें</string>
+    <string name="auth_placeholder_title">लॉगिन फ्लो प्लेसहोल्डर</string>
+    <string name="auth_placeholder_subtitle">फेज 1.5-1.8 में ऑथ स्क्रीन जोड़ी जाएंगी।</string>
+    <string name="main_placeholder_title">डैशबोर्ड प्लेसहोल्डर</string>
+    <string name="main_placeholder_subtitle">मुख्य ऐप ग्राफ फेज 2 के बाद जोड़ा जाएगा।</string>
 </resources>
 
