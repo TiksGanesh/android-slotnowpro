@@ -27,9 +27,31 @@
     <string name="onboarding_shop_inactive">यह दुकान अभी निष्क्रिय है। सहायता से संपर्क करें।</string>
     <string name="onboarding_shop_network_error">इंटरनेट कनेक्शन नहीं है। कृपया फिर से प्रयास करें।</string>
     <string name="retry_label">फिर से प्रयास करें</string>
+    <string name="login_title">लॉगिन</string>
+    <string name="login_subtitle">आप लॉगिन कर रहे हैं</string>
+    <string name="login_phone_label">फोन नंबर</string>
+    <string name="login_phone_hint">अपना मोबाइल नंबर दर्ज करें</string>
+    <string name="login_country_code">+91</string>
+    <string name="login_send_otp">OTP भेजें</string>
+    <string name="login_loading_send_otp">OTP भेजा जा रहा है…</string>
+    <string name="login_otp_sent">OTP %1$s पर भेजा गया</string>
+    <string name="login_shop_name_prefix">%1$s में लॉगिन कर रहे हैं</string>
+    <string name="login_error_invalid_phone">मान्य 10 अंकों का नंबर दर्ज करें।</string>
+    <string name="login_error_not_registered">यह नंबर इस दुकान में पंजीकृत नहीं है।</string>
+    <string name="login_error_shop_unavailable">यह दुकान उपलब्ध नहीं है। कृपया सेटअप दोबारा करें।</string>
+    <string name="otp_title">OTP सत्यापित करें</string>
+    <string name="otp_subtitle">हम जो 6 अंकों का कोड भेजा है उसे दर्ज करके अपना खाता सत्यापित करें</string>
+    <string name="otp_input_label">OTP</string>
+    <string name="otp_input_hint">6 अंकों का OTP दर्ज करें</string>
+    <string name="otp_verify">OTP सत्यापित करें</string>
+    <string name="otp_loading_verify">OTP सत्यापित किया जा रहा है…</string>
+    <string name="otp_loading_resend">OTP दोबारा भेजा जा रहा है…</string>
+    <string name="otp_resend">OTP दोबारा भेजें</string>
+    <string name="otp_resend_countdown">%1$d सेकंड में OTP दोबारा भेजें</string>
+    <string name="otp_error_invalid">गलत OTP। कृपया फिर से प्रयास करें।</string>
+    <string name="otp_error_locked">बहुत अधिक प्रयास। नया OTP अनुरोध करें।</string>
     <string name="auth_placeholder_title">लॉगिन फ्लो प्लेसहोल्डर</string>
     <string name="auth_placeholder_subtitle">फेज 1.5-1.8 में ऑथ स्क्रीन जोड़ी जाएंगी।</string>
     <string name="main_placeholder_title">डैशबोर्ड प्लेसहोल्डर</string>
     <string name="main_placeholder_subtitle">मुख्य ऐप ग्राफ फेज 2 के बाद जोड़ा जाएगा।</string>
 </resources>
-

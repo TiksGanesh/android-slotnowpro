@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -19,6 +21,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import app.slotnow.slotnowpro.R
+import app.slotnow.slotnowpro.presentation.auth.AuthNavigationEvent
+import app.slotnow.slotnowpro.presentation.auth.AuthViewModel
+import app.slotnow.slotnowpro.presentation.auth.LoginScreen
+import app.slotnow.slotnowpro.presentation.auth.OtpScreen
 import app.slotnow.slotnowpro.presentation.onboarding.LanguageSelectionScreen
 import app.slotnow.slotnowpro.presentation.onboarding.OnboardingViewModel
 import app.slotnow.slotnowpro.presentation.onboarding.ShopSetupScreen
@@ -46,7 +52,7 @@ fun AppNavGraph(
                     onNextClick = {
                         viewModel.confirmLanguageSelection()
                         val nextRoute = if (viewModel.hasShopSlug()) {
-                            Screen.AuthPlaceholder.route
+                            Screen.Login.route
                         } else {
                             Screen.ShopSetup.route
                         }
@@ -66,7 +72,7 @@ fun AppNavGraph(
                     onSlugChange = viewModel::updateShopSlugInput,
                     onContinueClick = viewModel::validateShopSlug,
                     onLooksGoodClick = {
-                        navController.navigate(Screen.AuthPlaceholder.route) {
+                        navController.navigate(Screen.Login.route) {
                             popUpTo(Screen.OnboardingGraph.route) { inclusive = true }
                         }
                     },
@@ -77,11 +83,71 @@ fun AppNavGraph(
         }
 
         navigation(
-            startDestination = Screen.AuthPlaceholder.route,
+            startDestination = Screen.Login.route,
             route = Screen.AuthGraph.route
         ) {
-            composable(Screen.AuthPlaceholder.route) {
-                AuthPlaceholderScreen()
+            composable(Screen.Login.route) {
+                val parentEntry = remember(navController) {
+                    navController.getBackStackEntry(Screen.AuthGraph.route)
+                }
+                val viewModel: AuthViewModel = hiltViewModel(parentEntry)
+                val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+                LaunchedEffect(viewModel) {
+                    viewModel.navigationEvents.collect { event ->
+                        when (event) {
+                            AuthNavigationEvent.ToOtp -> {
+                                navController.navigate(Screen.Otp.route)
+                            }
+
+                            AuthNavigationEvent.ToMain -> {
+                                navController.navigate(Screen.MainGraph.route) {
+                                    popUpTo(Screen.AuthGraph.route) { inclusive = true }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                LoginScreen(
+                    uiState = uiState,
+                    onPhoneChange = viewModel::updatePhoneInput,
+                    onSendOtpClick = viewModel::requestOtpFromLogin,
+                    onMissingShopContext = {
+                        navController.navigate(Screen.ShopSetup.route) {
+                            popUpTo(Screen.AuthGraph.route) { inclusive = true }
+                        }
+                    },
+                    onRedirectHandled = viewModel::consumeShopSetupRedirect
+                )
+            }
+
+            composable(Screen.Otp.route) {
+                val parentEntry = remember(navController) {
+                    navController.getBackStackEntry(Screen.AuthGraph.route)
+                }
+                val viewModel: AuthViewModel = hiltViewModel(parentEntry)
+                val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+                LaunchedEffect(viewModel) {
+                    viewModel.navigationEvents.collect { event ->
+                        when (event) {
+                            AuthNavigationEvent.ToOtp -> Unit
+                            AuthNavigationEvent.ToMain -> {
+                                navController.navigate(Screen.MainGraph.route) {
+                                    popUpTo(Screen.AuthGraph.route) { inclusive = true }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                OtpScreen(
+                    uiState = uiState,
+                    onOtpChange = viewModel::updateOtpInput,
+                    onVerifyClick = viewModel::verifyOtp,
+                    onResendClick = viewModel::resendOtp
+                )
             }
         }
 
@@ -96,13 +162,6 @@ fun AppNavGraph(
     }
 }
 
-@Composable
-private fun AuthPlaceholderScreen() {
-    PlaceholderScaffold(
-        title = stringResource(R.string.auth_placeholder_title),
-        subtitle = stringResource(R.string.auth_placeholder_subtitle)
-    )
-}
 
 @Composable
 private fun MainPlaceholderScreen() {

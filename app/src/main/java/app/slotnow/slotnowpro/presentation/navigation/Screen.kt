@@ -7,7 +7,8 @@ sealed class Screen(val route: String) {
 
     data object Language : Screen("onboarding_language")
     data object ShopSetup : Screen("onboarding_shop")
-    data object AuthPlaceholder : Screen("auth_placeholder")
+    data object Login : Screen("auth_login")
+    data object Otp : Screen("auth_otp")
     data object MainPlaceholder : Screen("main_placeholder")
 }
 

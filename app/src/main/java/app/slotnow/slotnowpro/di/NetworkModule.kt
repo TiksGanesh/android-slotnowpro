@@ -1,7 +1,6 @@
 package app.slotnow.slotnowpro.di
 
 import android.content.Context
-import android.content.pm.ApplicationInfo
 import app.slotnow.slotnowpro.BuildConfig
 import app.slotnow.slotnowpro.data.local.prefs.LanguageManager
 import app.slotnow.slotnowpro.data.local.prefs.ShopManager
@@ -10,6 +9,7 @@ import app.slotnow.slotnowpro.data.remote.api.BarberAuthApi
 import app.slotnow.slotnowpro.data.remote.api.BarberDashboardApi
 import app.slotnow.slotnowpro.data.remote.api.OnboardingApi
 import app.slotnow.slotnowpro.data.remote.interceptor.AuthInterceptor
+import app.slotnow.slotnowpro.data.remote.interceptor.ConnectivityInterceptor
 import app.slotnow.slotnowpro.data.remote.interceptor.TokenAuthenticator
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -70,6 +70,32 @@ object NetworkModule {
         languageManager: LanguageManager
     ): AuthInterceptor = AuthInterceptor(tokenManager, languageManager)
 
+    @Provides
+    @Singleton
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().apply {
+            level = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor.Level.BODY
+            } else {
+                HttpLoggingInterceptor.Level.NONE
+            }
+            redactHeader("Authorization")
+        }
+    }
+
+    @Provides
+    @Singleton
+    @Named("plain_okhttp")
+    fun providePlainOkHttpClient(
+        connectivityInterceptor: ConnectivityInterceptor,
+        httpLoggingInterceptor: HttpLoggingInterceptor
+    ): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(connectivityInterceptor)
+        .addInterceptor(httpLoggingInterceptor)
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .build()
+
     /**
      * Plain Retrofit without auth interceptor — used for:
      * - Onboarding endpoints (public)
@@ -78,8 +104,12 @@ object NetworkModule {
     @Provides
     @Singleton
     @Named("plain_retrofit")
-    fun providePlainRetrofit(gson: Gson): Retrofit = Retrofit.Builder()
+    fun providePlainRetrofit(
+        gson: Gson,
+        @Named("plain_okhttp") plainOkHttpClient: OkHttpClient
+    ): Retrofit = Retrofit.Builder()
         .baseUrl(provideBaseUrl())
+        .client(plainOkHttpClient)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 
@@ -111,25 +141,15 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(
-        @ApplicationContext context: Context,
+        connectivityInterceptor: ConnectivityInterceptor,
         authInterceptor: AuthInterceptor,
-        tokenAuthenticator: TokenAuthenticator
+        tokenAuthenticator: TokenAuthenticator,
+        httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(connectivityInterceptor)
         .addInterceptor(authInterceptor)
         .authenticator(tokenAuthenticator)
-        .addInterceptor(
-            HttpLoggingInterceptor().apply {
-                // Keep detailed HTTP logs in debug only; avoid sensitive data exposure in release.
-                val isDebuggable =
-                    (context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
-                level = if (isDebuggable) {
-                    HttpLoggingInterceptor.Level.BODY
-                } else {
-                    HttpLoggingInterceptor.Level.NONE
-                }
-                redactHeader("Authorization")
-            }
-        )
+        .addInterceptor(httpLoggingInterceptor)
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .build()
@@ -158,5 +178,4 @@ object NetworkModule {
     fun provideBarberDashboardApi(retrofit: Retrofit): BarberDashboardApi =
         retrofit.create(BarberDashboardApi::class.java)
 }
-
 

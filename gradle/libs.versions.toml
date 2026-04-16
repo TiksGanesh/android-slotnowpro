@@ -19,6 +19,7 @@ appcompat = "1.7.0"
 securityCrypto = "1.1.0-alpha06"
 room = "2.6.1"
 coroutines = "1.8.1"
+coil = "2.7.0"
 mockk = "1.13.12"
 coroutinesTest = "1.8.1"
 ksp = "2.2.10-2.0.2"
@@ -52,6 +53,7 @@ androidx-room-runtime = { group = "androidx.room", name = "room-runtime", versio
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }

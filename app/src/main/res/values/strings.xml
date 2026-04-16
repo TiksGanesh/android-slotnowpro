@@ -27,9 +27,31 @@
     <string name="onboarding_shop_inactive">This shop is currently inactive. Contact support.</string>
     <string name="onboarding_shop_network_error">No internet connection. Please retry.</string>
     <string name="retry_label">Retry</string>
+    <string name="login_title">Login</string>
+    <string name="login_subtitle">You are logging into</string>
+    <string name="login_phone_label">Phone Number</string>
+    <string name="login_phone_hint">Enter your mobile number</string>
+    <string name="login_country_code">+91</string>
+    <string name="login_send_otp">Send OTP</string>
+    <string name="login_loading_send_otp">Sending OTP…</string>
+    <string name="login_otp_sent">OTP sent to %1$s</string>
+    <string name="login_shop_name_prefix">Logging into %1$s</string>
+    <string name="login_error_invalid_phone">Enter a valid 10-digit number.</string>
+    <string name="login_error_not_registered">This number is not registered with this shop.</string>
+    <string name="login_error_shop_unavailable">This shop is unavailable. Please complete setup again.</string>
+    <string name="otp_title">Verify OTP</string>
+    <string name="otp_subtitle">Enter the 6-digit code we sent to verify your account</string>
+    <string name="otp_input_label">OTP</string>
+    <string name="otp_input_hint">Enter 6-digit OTP</string>
+    <string name="otp_verify">Verify OTP</string>
+    <string name="otp_loading_verify">Verifying OTP…</string>
+    <string name="otp_loading_resend">Resending OTP…</string>
+    <string name="otp_resend">Resend OTP</string>
+    <string name="otp_resend_countdown">Resend OTP in %1$d s</string>
+    <string name="otp_error_invalid">Incorrect OTP. Please try again.</string>
+    <string name="otp_error_locked">Too many attempts. Request a new OTP.</string>
     <string name="auth_placeholder_title">Login flow placeholder</string>
     <string name="auth_placeholder_subtitle">Auth screens will be wired in Phase 1.5-1.8.</string>
     <string name="main_placeholder_title">Dashboard placeholder</string>
     <string name="main_placeholder_subtitle">Main app graph will be wired in Phase 2 onward.</string>
 </resources>
-

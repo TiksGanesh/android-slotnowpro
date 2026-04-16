@@ -7,6 +7,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -19,7 +20,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -37,6 +37,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import app.slotnow.slotnowpro.R
+import app.slotnow.slotnowpro.presentation.components.LoadingOverlay
 import app.slotnow.slotnowpro.ui.theme.SlotNowProTheme
 
 private val shopIdRegex = Regex(pattern = "^[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -73,150 +74,142 @@ fun ShopSetupScreen(
         hasInvalidFormat = hasInvalidFormat
     )
 
-    Scaffold(
-        modifier = modifier,
-        bottomBar = {
-            Surface(
-                tonalElevation = 2.dp,
-                shadowElevation = 4.dp
-            ) {
-                Button(
-                    onClick = {
-                        if (validationState is ShopValidationState.Valid) {
-                            onLooksGoodClick()
-                        } else {
-                            onContinueClick()
-                        }
-                    },
-                    enabled = ctaEnabled,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 12.dp)
-                        .defaultMinSize(minHeight = 52.dp)
-                        .navigationBarsPadding()
+    Box(modifier = modifier.fillMaxSize()) {
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+            bottomBar = {
+                Surface(
+                    tonalElevation = 2.dp,
+                    shadowElevation = 4.dp
                 ) {
-                    if (isLoading) {
-                        CircularProgressIndicator(
-                            modifier = Modifier
-                                .padding(end = 8.dp)
-                                .size(18.dp),
-                            strokeWidth = 2.dp
+                    Button(
+                        onClick = {
+                            if (validationState is ShopValidationState.Valid) {
+                                onLooksGoodClick()
+                            } else {
+                                onContinueClick()
+                            }
+                        },
+                        enabled = ctaEnabled,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 12.dp)
+                            .defaultMinSize(minHeight = 52.dp)
+                            .navigationBarsPadding()
+                    ) {
+                        Text(text = stringResource(R.string.onboarding_shop_continue))
+                    }
+                }
+            }
+        ) { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .padding(horizontal = 16.dp, vertical = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text(
+                        text = stringResource(R.string.onboarding_shop_title),
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                    Text(
+                        text = stringResource(R.string.onboarding_shop_subtitle),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+
+                AnimatedVisibility(visible = !lastUsedShopSlug.isNullOrBlank()) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Text(
+                            text = stringResource(R.string.onboarding_shop_last_used, lastUsedShopSlug.orEmpty()),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.weight(1f),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        TextButton(onClick = { onUseLastShopId(lastUsedShopSlug.orEmpty()) }) {
+                            Text(text = stringResource(R.string.onboarding_shop_use_last))
+                        }
+                    }
+                }
+
+                OutlinedTextField(
+                    value = sanitizedInput,
+                    onValueChange = { input ->
+                        onSlugChange(sanitizeShopInput(input))
+                    },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth(),
+                    label = { Text(text = stringResource(R.string.onboarding_shop_input_label)) },
+                    placeholder = { Text(text = stringResource(R.string.onboarding_shop_hint)) },
+                    isError = hasInvalidFormat || feedbackState is ShopFeedbackState.Error,
+                    keyboardOptions = KeyboardOptions(
+                        capitalization = KeyboardCapitalization.None,
+                        autoCorrectEnabled = false,
+                        imeAction = ImeAction.Done
+                    ),
+                    trailingIcon = {
+                        FieldStateTrailingIcon(
+                            validationState = validationState,
+                            hasInvalidFormat = hasInvalidFormat
                         )
                     }
-                    Text(text = stringResource(R.string.onboarding_shop_continue))
-                }
-            }
-        }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(horizontal = 16.dp, vertical = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text(
-                    text = stringResource(R.string.onboarding_shop_title),
-                    style = MaterialTheme.typography.titleLarge
                 )
-                Text(
-                    text = stringResource(R.string.onboarding_shop_subtitle),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
 
-            AnimatedVisibility(visible = !lastUsedShopSlug.isNullOrBlank()) {
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text(
-                        text = stringResource(R.string.onboarding_shop_last_used, lastUsedShopSlug.orEmpty()),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.weight(1f),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    TextButton(onClick = { onUseLastShopId(lastUsedShopSlug.orEmpty()) }) {
-                        Text(text = stringResource(R.string.onboarding_shop_use_last))
-                    }
-                }
-            }
+                AnimatedContent(
+                    targetState = feedbackState,
+                    label = "shopFeedbackTransition"
+                ) { state ->
+                    when (state) {
+                        ShopFeedbackState.Idle -> Spacer(modifier = Modifier.size(0.dp))
 
-            OutlinedTextField(
-                value = sanitizedInput,
-                onValueChange = { input ->
-                    onSlugChange(sanitizeShopInput(input))
-                },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-                label = { Text(text = stringResource(R.string.onboarding_shop_input_label)) },
-                placeholder = { Text(text = stringResource(R.string.onboarding_shop_hint)) },
-                isError = hasInvalidFormat || feedbackState is ShopFeedbackState.Error,
-                keyboardOptions = KeyboardOptions(
-                    capitalization = KeyboardCapitalization.None,
-                    autoCorrectEnabled = false,
-                    imeAction = ImeAction.Done
-                ),
-                trailingIcon = {
-                    FieldStateTrailingIcon(
-                        validationState = validationState,
-                        hasInvalidFormat = hasInvalidFormat
-                    )
-                }
-            )
-
-            AnimatedContent(
-                targetState = feedbackState,
-                label = "shopFeedbackTransition"
-            ) { state ->
-                when (state) {
-                    ShopFeedbackState.Idle -> Spacer(modifier = Modifier.size(0.dp))
-
-                    ShopFeedbackState.Loading -> {
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            CircularProgressIndicator(
-                                modifier = Modifier.size(16.dp),
-                                strokeWidth = 2.dp
-                            )
+                        ShopFeedbackState.Loading -> {
                             Text(
                                 text = stringResource(R.string.onboarding_shop_verifying),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
-                    }
 
-                    is ShopFeedbackState.Success -> {
-                        Text(
-                            text = state.shopName,
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = successColor
-                        )
-                    }
+                        is ShopFeedbackState.Success -> {
+                            Text(
+                                text = state.shopName,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = successColor
+                            )
+                        }
 
-                    is ShopFeedbackState.Error -> {
-                        Text(
-                            text = state.message,
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.error
-                        )
+                        is ShopFeedbackState.Error -> {
+                            Text(
+                                text = state.message,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.error
+                            )
+                        }
                     }
                 }
-            }
 
-            AnimatedVisibility(
-                visible = validationState is ShopValidationState.NetworkError,
-                enter = fadeIn() + slideInVertically(initialOffsetY = { it / 2 }),
-                exit = fadeOut() + slideOutVertically(targetOffsetY = { it / 2 })
-            ) {
-                TextButton(
-                    onClick = onContinueClick,
-                    contentPadding = PaddingValues(horizontal = 0.dp)
+                AnimatedVisibility(
+                    visible = validationState is ShopValidationState.NetworkError,
+                    enter = fadeIn() + slideInVertically(initialOffsetY = { it / 2 }),
+                    exit = fadeOut() + slideOutVertically(targetOffsetY = { it / 2 })
                 ) {
-                    Text(text = stringResource(R.string.retry_label))
+                    TextButton(
+                        onClick = onContinueClick,
+                        contentPadding = PaddingValues(horizontal = 0.dp)
+                    ) {
+                        Text(text = stringResource(R.string.retry_label))
+                    }
                 }
             }
+        }
+
+        if (isLoading) {
+            LoadingOverlay(message = stringResource(R.string.onboarding_shop_verifying))
         }
     }
 }
@@ -227,12 +220,9 @@ private fun FieldStateTrailingIcon(
     hasInvalidFormat: Boolean
 ) {
     when {
-        validationState is ShopValidationState.Loading -> {
-            CircularProgressIndicator(
-                modifier = Modifier.size(18.dp),
-                strokeWidth = 2.dp
-            )
-        }
+        // Loading state: no icon shown here because a full-screen LoadingOverlay is displayed instead.
+        // This keeps the UI focused on the overlay feedback rather than cluttering the field.
+        validationState is ShopValidationState.Loading -> Unit
 
         validationState is ShopValidationState.Valid -> {
             Text(
@@ -399,4 +389,3 @@ private fun ShopSetupScreenMarathiPreview() {
         )
     }
 }
-
