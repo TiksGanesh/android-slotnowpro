@@ -27,9 +27,31 @@
     <string name="onboarding_shop_inactive">हे दुकान सध्या निष्क्रिय आहे. सहाय्याशी संपर्क करा.</string>
     <string name="onboarding_shop_network_error">इंटरनेट कनेक्शन नाही. कृपया पुन्हा प्रयत्न करा.</string>
     <string name="retry_label">पुन्हा प्रयत्न करा</string>
+    <string name="login_title">लॉगिन</string>
+    <string name="login_subtitle">तुम्ही लॉगिन करत आहात</string>
+    <string name="login_phone_label">फोन नंबर</string>
+    <string name="login_phone_hint">तुमचा मोबाइल नंबर टाका</string>
+    <string name="login_country_code">+91</string>
+    <string name="login_send_otp">OTP पाठवा</string>
+    <string name="login_loading_send_otp">OTP पाठवला जात आहे…</string>
+    <string name="login_otp_sent">OTP %1$s वर पाठवला आहे</string>
+    <string name="login_shop_name_prefix">%1$s मध्ये लॉगिन करत आहात</string>
+    <string name="login_error_invalid_phone">वैध 10 अंकी नंबर टाका.</string>
+    <string name="login_error_not_registered">हा नंबर या दुकानात नोंदणीकृत नाही.</string>
+    <string name="login_error_shop_unavailable">हे दुकान उपलब्ध नाही. कृपया सेटअप पुन्हा करा.</string>
+    <string name="otp_title">OTP पडताळा</string>
+    <string name="otp_subtitle">आपले खाते पडताळण्यासाठी आम्ही पाठवलेला 6 अंकी कोड टाका</string>
+    <string name="otp_input_label">OTP</string>
+    <string name="otp_input_hint">6 अंकी OTP टाका</string>
+    <string name="otp_verify">OTP पडताळा</string>
+    <string name="otp_loading_verify">OTP पडताळला जात आहे…</string>
+    <string name="otp_loading_resend">OTP पुन्हा पाठवला जात आहे…</string>
+    <string name="otp_resend">OTP पुन्हा पाठवा</string>
+    <string name="otp_resend_countdown">%1$d सेकंदांनी OTP पुन्हा पाठवा</string>
+    <string name="otp_error_invalid">चुकीचा OTP. कृपया पुन्हा प्रयत्न करा.</string>
+    <string name="otp_error_locked">खूप प्रयत्न झाले. नवीन OTP मागवा.</string>
     <string name="auth_placeholder_title">लॉगिन फ्लो प्लेसहोल्डर</string>
     <string name="auth_placeholder_subtitle">फेज 1.5-1.8 मध्ये ऑथ स्क्रीन जोडल्या जातील.</string>
     <string name="main_placeholder_title">डॅशबोर्ड प्लेसहोल्डर</string>
     <string name="main_placeholder_subtitle">मुख्य अॅप ग्राफ फेज 2 नंतर जोडला जाईल.</string>
 </resources>
-
