@@ -9,6 +9,6 @@ sealed class Screen(val route: String) {
     data object ShopSetup : Screen("onboarding_shop")
     data object Login : Screen("auth_login")
     data object Otp : Screen("auth_otp")
-    data object MainPlaceholder : Screen("main_placeholder")
+    data object Dashboard : Screen("main_dashboard")
 }
 

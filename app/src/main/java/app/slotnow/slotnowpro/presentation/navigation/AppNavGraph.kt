@@ -1,30 +1,20 @@
 package app.slotnow.slotnowpro.presentation.navigation
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import app.slotnow.slotnowpro.R
 import app.slotnow.slotnowpro.presentation.auth.AuthNavigationEvent
 import app.slotnow.slotnowpro.presentation.auth.AuthViewModel
 import app.slotnow.slotnowpro.presentation.auth.LoginScreen
 import app.slotnow.slotnowpro.presentation.auth.OtpScreen
+import app.slotnow.slotnowpro.presentation.dashboard.DashboardRoute
 import app.slotnow.slotnowpro.presentation.onboarding.LanguageSelectionScreen
 import app.slotnow.slotnowpro.presentation.onboarding.OnboardingViewModel
 import app.slotnow.slotnowpro.presentation.onboarding.ShopSetupScreen
@@ -152,47 +142,13 @@ fun AppNavGraph(
         }
 
         navigation(
-            startDestination = Screen.MainPlaceholder.route,
+            startDestination = Screen.Dashboard.route,
             route = Screen.MainGraph.route
         ) {
-            composable(Screen.MainPlaceholder.route) {
-                MainPlaceholderScreen()
+            composable(Screen.Dashboard.route) {
+                DashboardRoute()
             }
         }
     }
 }
-
-
-@Composable
-private fun MainPlaceholderScreen() {
-    PlaceholderScaffold(
-        title = stringResource(R.string.main_placeholder_title),
-        subtitle = stringResource(R.string.main_placeholder_subtitle)
-    )
-}
-
-@Composable
-private fun PlaceholderScaffold(
-    title: String,
-    subtitle: String
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 24.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.headlineSmall
-        )
-        Text(
-            text = subtitle,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-    }
-}
-
 
